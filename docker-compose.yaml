@@ -1,0 +1,27 @@
+services:
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - $REDIS_PORT:$REDIS_PORT
+
+  app:
+    depends_on:
+      - redis
+    build: .
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - $SPRING_PORT:$SPRING_PORT
+    environment:
+      SPRING_APPLICATION_JSON: '{
+          "spring.redis.host" : "$REDIS_HOST",
+          "spring.redis.port" : "$REDIS_PORT"
+        }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
