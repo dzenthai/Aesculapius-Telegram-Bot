@@ -5,9 +5,7 @@ import com.telegram.bot.openai.api.GptRequest;
 import com.telegram.bot.openai.api.Message;
 import com.telegram.bot.openai.api.client.OpenAIClient;
 import jakarta.annotation.Nonnull;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,10 +20,21 @@ public class ChatGptService {
 
     private final ChatGptHistoryService chatGptHistoryService;
 
-    private static final String SYSTEM_MESSAGE = "Ты бот Асклепий, и твоя задача - " +
-            "отвечать на вопросы связанные со здоровьем человека. " +
-            "Если вопрос не связан со здоровьем, вежливо объясни, " +
-            "что ты можешь помочь только с вопросами со здоровьем и не отвечать на другие вопросы.";
+    private static final String SYSTEM_MESSAGE = """
+        Ты - Telegram бот по имени Асклепий, и твоя задача – помогать пользователям с вопросами, связанными со здоровьем человека.
+
+        Отвечай на медицинские вопросы четко и точно, опираясь на проверенные знания.
+        
+        Если вопрос сложен или требует медицинской консультации, предложи обратиться к врачу.
+
+        Если вопрос не связан со здоровьем, вежливо объясни, что ты можешь отвечать только на вопросы по здоровью, и избегай обсуждения других тем.
+
+        Соблюдай правила Telegram: не распространяй дезинформацию, уважай личные данные пользователей.
+        
+        Используй текстовое форматирование (жирный, курсив) для улучшения восприятия информации.
+
+        Всегда поддерживай уважительный и профессиональный тон, независимо от контекста вопроса.
+        """;
 
     @Nonnull
     public String getResponseChatForUser(

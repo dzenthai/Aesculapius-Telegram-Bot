@@ -28,7 +28,8 @@ public class CommandsDispatcher {
         if (suitedHandler.isEmpty()) {
             return SendMessage.builder()
                     .chatId(message.getChatId())
-                    .text("Not supported command: command=%s".formatted(text))
+                    .text("Команда %s не поддерживается. Пожалуйста, проверьте правильность команды и попробуйте снова."
+                            .formatted(text))
                     .build();
         }
         return suitedHandler.orElseThrow().processCommand(message);

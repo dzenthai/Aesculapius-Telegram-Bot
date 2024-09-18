@@ -57,5 +57,4 @@ public class TelegramUpdateMessageHandler {
                 .text("Произошла ошибка, попробуйте позже")
                 .build();
     }
-
 }

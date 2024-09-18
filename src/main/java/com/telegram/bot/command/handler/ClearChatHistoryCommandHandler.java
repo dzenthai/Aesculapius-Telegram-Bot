@@ -19,7 +19,7 @@ public class ClearChatHistoryCommandHandler implements CommandHandler {
     @Override
     public BotApiMethod<?> processCommand(Message message) {
         chatGptHistoryService.clearHistory(message.getChatId());
-        String clearHistoryMessage = "Контекст успешно очищен";
+        String clearHistoryMessage = "Контекст успешно очищен!";
         return SendMessage.builder()
                 .chatId(message.getChatId())
                 .text(clearHistoryMessage)

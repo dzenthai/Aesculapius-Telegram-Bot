@@ -56,7 +56,11 @@ public class TelegramAsyncMessageSender {
                                 .build());
                     } catch (TelegramApiException e) {
                         chatGptHistoryService.clearHistory(message.getChatId());
-                        log.error("Telegram Async MessageSender | Error while send request to telegram: ", e);
+                        log.error("Telegram Async MessageSender | Telegram exception while send request to telegram: ", e);
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        chatGptHistoryService.clearHistory(message.getChatId());
+                        log.error("Telegram Async MessageSender | Unexpected exception while send request to telegram: ", e);
                         throw new RuntimeException(e);
                     }
                 });
