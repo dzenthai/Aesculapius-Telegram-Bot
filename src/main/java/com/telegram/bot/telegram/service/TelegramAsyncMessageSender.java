@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
+import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -38,7 +39,7 @@ public class TelegramAsyncMessageSender {
             Supplier<SendMessage> action,
             Function<Throwable, SendMessage> onErrorHandler
     ) {
-        log.info("Telegram Async MessageSender | Send message async: chatId: {}", chatId);
+        log.info("TelegramAsyncMessageSender | Send message async: chatId: {}", chatId);
         var message = defaultAbsSender.execute(SendMessage.builder()
                         .text("Ваш запрос принят в обработку, ожидайте")
                         .chatId(chatId)
@@ -48,19 +49,21 @@ public class TelegramAsyncMessageSender {
                 .exceptionally(onErrorHandler)
                 .thenAccept(sendMessage -> {
                     try {
-                        log.info("Telegram Async MessageSender | Send edit message async: chatId: {}", chatId);
+                        log.info("TelegramAsyncMessageSender | Send edit message async: chatId: {}", chatId);
                         defaultAbsSender.execute(EditMessageText.builder()
-                                        .chatId(chatId)
-                                        .messageId(message.getMessageId())
-                                        .text(sendMessage.getText())
+                                .chatId(chatId)
+                                .messageId(message.getMessageId())
+                                .text(sendMessage.getText())
+                                .parseMode(ParseMode.MARKDOWN)
                                 .build());
+
                     } catch (TelegramApiException e) {
                         chatGptHistoryService.clearHistory(message.getChatId());
-                        log.error("Telegram Async MessageSender | Telegram exception while send request to telegram: ", e);
+                        log.error("TelegramAsyncMessageSender | Telegram exception while send request to telegram: ", e);
                         throw new RuntimeException(e);
                     } catch (Exception e) {
                         chatGptHistoryService.clearHistory(message.getChatId());
-                        log.error("Telegram Async MessageSender | Unexpected exception while send request to telegram: ", e);
+                        log.error("TelegramAsyncMessageSender | Unexpected exception while send request to telegram: ", e);
                         throw new RuntimeException(e);
                     }
                 });

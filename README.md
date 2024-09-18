@@ -69,4 +69,3 @@ In the `ChatGptService` class, the `SYSTEM_MESSAGE` variable sets the bot's cont
 private static final String SYSTEM_MESSAGE = "...";
 
 
-

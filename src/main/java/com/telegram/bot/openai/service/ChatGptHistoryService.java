@@ -28,27 +28,27 @@ public class ChatGptHistoryService {
     }
 
     public Optional<GptHistory> getUserHistory(Long userId) {
-        log.debug("Chat Gpt History Service | Fetching history for user: {}", userId);
+        log.debug("ChatGptHistoryService | Fetching history for user: {}", userId);
         var chatHistory = (GptHistory) redisTemplate.opsForValue().get(getHistoryKey(userId));
-        log.debug("Chat Gpt History Service | Fetched history: {}", chatHistory);
+        log.debug("ChatGptHistoryService | Fetched history: {}", chatHistory);
         return Optional.ofNullable(chatHistory);
     }
 
     public void createHistory(Long userId) {
-        log.debug("Chat Gpt History Service | Creating history for user: {}", userId);
+        log.debug("ChatGptHistoryService | Creating history for user: {}", userId);
         redisTemplate.opsForValue().set(getHistoryKey(userId), new GptHistory(new ArrayList<>()));
         redisTemplate.expire(getHistoryKey(userId), HISTORY_TTL);
-        log.debug("Chat Gpt History Service | History created for user: {}", userId);
+        log.debug("ChatGptHistoryService | History created for user: {}", userId);
     }
 
     public void clearHistory(Long userId) {
-        log.debug("Chat Gpt History Service | Clearing history for user: {}", userId);
+        log.debug("ChatGptHistoryService | Clearing history for user: {}", userId);
         redisTemplate.delete(getHistoryKey(userId));
-        log.debug("Chat Gpt History Service | History cleared for user: {}", userId);
+        log.debug("ChatGptHistoryService | History cleared for user: {}", userId);
     }
 
     public void addUserMessageToHistory(Long userId, Message message) {
-        log.debug("Chat Gpt History Service | Adding user message to history for user: {}", userId);
+        log.debug("ChatGptHistoryService | Adding user message to history for user: {}", userId);
         var chatHistory = (GptHistory) redisTemplate.opsForValue().get(getHistoryKey(userId));
         if (chatHistory == null) {
             throw new IllegalStateException("History not exists for user: %s".formatted(userId));
@@ -56,11 +56,11 @@ public class ChatGptHistoryService {
         chatHistory.chatMessages().add(message);
         redisTemplate.opsForValue().set(getHistoryKey(userId), chatHistory);
         redisTemplate.expire(getHistoryKey(userId), HISTORY_TTL);
-        log.debug("Chat Gpt History Service | User message added to history for user: {}", userId);
+        log.debug("ChatGptHistoryService | User message added to history for user: {}", userId);
     }
 
     public void addBotMessageToHistory(Long userId, Message message) {
-        log.debug("Chat Gpt History Service | Adding bot message to history for user: {}", userId);
+        log.debug("ChatGptHistoryService | Adding bot message to history for user: {}", userId);
         var chatHistory = (GptHistory) redisTemplate.opsForValue().get(getHistoryKey(userId));
         if (chatHistory == null) {
             throw new IllegalStateException("History not exists for user = %s".formatted(userId));
@@ -68,14 +68,14 @@ public class ChatGptHistoryService {
         chatHistory.chatMessages().add(message);
         redisTemplate.opsForValue().set(getHistoryKey(userId), chatHistory);
         redisTemplate.expire(getHistoryKey(userId), HISTORY_TTL);
-        log.debug("Chat Gpt History Service | Bot message added to history for user: {}", userId);
+        log.debug("ChatGptHistoryService | Bot message added to history for user: {}", userId);
     }
 
     public void createHistoryIfNotExist(Long userId) {
-        log.debug("Chat Gpt History Service | Checking if history exists for user: {}", userId);
+        log.debug("ChatGptHistoryService | Checking if history exists for user: {}", userId);
         if (redisTemplate.opsForValue().get(getHistoryKey(userId)) == null) {
             createHistory(userId);
-            log.debug("Chat Gpt History Service | History created for user (if not exist): {}", userId);
+            log.debug("ChatGptHistoryService | History created for user (if not exist): {}", userId);
         }
     }
 }

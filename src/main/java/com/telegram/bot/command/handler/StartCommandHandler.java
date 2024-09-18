@@ -19,7 +19,7 @@ public class StartCommandHandler implements CommandHandler {
                 Список команд:
                 
                 /info - Информация о моих возможностях
-                /clear - Очистка контекста
+                /clear - Очистка данных (контекста).
                 
                 Примеры вопросов, которые ты можешь задать:
                 

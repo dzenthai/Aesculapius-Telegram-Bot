@@ -35,7 +35,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 sendApiMethod(method);
             }
         } catch (Exception e) {
-            log.error("Telegram Bot | Error while processing update: ", e);
+            log.error("TelegramBot | Error while processing update: ", e);
             sendUserErrorMessage(update.getMessage().getChatId());
         }
     }

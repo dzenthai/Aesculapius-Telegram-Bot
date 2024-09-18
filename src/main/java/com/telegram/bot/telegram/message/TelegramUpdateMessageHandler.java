@@ -25,7 +25,7 @@ public class TelegramUpdateMessageHandler {
     private final TelegramVoiceHandler telegramVoiceHandler;
 
     public BotApiMethod<?> handleMessage(Message message) {
-        log.info("Telegram Update Message Handler | Start message processing: message: {}", message);
+        log.info("TelegramUpdateMessageHandler | Start message processing: message: {}", message);
         if (telegramCommandsDispatcher.isCommand(message)) {
             return telegramCommandsDispatcher.processCommand(message);
         }
@@ -51,7 +51,7 @@ public class TelegramUpdateMessageHandler {
     }
 
     private SendMessage getErrorMessage(Throwable throwable, String chatId) {
-        log.error("Telegram Update Message Handler | Произошла ошибка, chatId: {}", chatId, throwable);
+        log.error("TelegramUpdateMessageHandler | Произошла ошибка, chatId: {}", chatId, throwable);
         return SendMessage.builder()
                 .chatId(chatId)
                 .text("Произошла ошибка, попробуйте позже")
