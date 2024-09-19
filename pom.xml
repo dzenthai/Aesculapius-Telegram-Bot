@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.telegram</groupId>
-    <artifactId>Aesulapius-Telegram-Bot</artifactId>
+    <artifactId>Healthcare-Telegram-Bot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>telegram-bot</name>
     <description>telegram-bot</description>

@@ -21,7 +21,7 @@ public class ChatGptService {
     private final ChatGptHistoryService chatGptHistoryService;
 
     private static final String SYSTEM_MESSAGE = """
-        Ты - Telegram бот по имени Асклепий, и твоя задача – помогать пользователям с вопросами, связанными со здоровьем человека.
+        Ты - Telegram бот Тимпи, и твоя задача – помогать пользователям с вопросами, связанными со здоровьем человека.
 
         Отвечай на медицинские вопросы четко и точно, опираясь на проверенные знания.
         

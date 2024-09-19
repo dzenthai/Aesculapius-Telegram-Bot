@@ -1,8 +1,8 @@
-# AesculapiusTelegramBot
+# Healthcare-Telegram-Bot
 
 ## **Description**
 
-AesculapiusTelegramBot is a Telegram bot designed to assist users with health-related questions. It leverages ChatGPT under the hood and is built using Java, Spring Boot, Redis, and Docker.
+Healthcare-Telegram-Bot is a Telegram bot designed to assist users with health-related questions. It leverages ChatGPT under the hood and is built using Java, Spring Boot, Redis, and Docker.
 
 ---
 
@@ -39,8 +39,8 @@ AesculapiusTelegramBot is a Telegram bot designed to assist users with health-re
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/dzenthai/Aesculapius-Telegram-Bot.git
-   cd Aesculapius-Telegram-Bot
+   git clone https://github.com/dzenthai/Healthcare-Telegram-Bot.git
+   cd Healthcare-Telegram-Bot
    
 2. **Add Environment Variables**
    Create an .env file and add necessary environment variables such as Telegram bot tokens and API keys.

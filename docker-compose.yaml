@@ -5,7 +5,7 @@ services:
     ports:
       - $REDIS_PORT:$REDIS_PORT
 
-  app:
+  chatbot:
     depends_on:
       - redis
     build: .
