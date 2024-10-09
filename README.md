@@ -2,17 +2,16 @@
 
 ## **Description**
 
-Healthcare-Telegram-Bot is a Telegram bot designed to assist users with health-related questions. It leverages ChatGPT under the hood and is built using Java, Spring Boot, Redis, and Docker.
+Healthcare-Telegram-Bot is a Telegram bot designed to assist users with health-related questions. It leverages the OpenAI API under the hood and is built using Java, Spring Boot, Redis, and Docker.
 
 ---
 
 ## **Key Features**
 
-- **Health Assistance**: Provides answers to health-related questions using ChatGPT.
+- **Health Assistance**: Provides answers to health-related questions using the OpenAI API.
 - **Persistent Context**: Uses Redis to store the conversation context for more coherent and context-aware responses.
 - **Voice to Text**: Transcribes voice messages to text and responds accordingly.
 - **Simple Commands**: Includes commands to start a conversation, get bot information, and clear the conversation context and cache.
-- **Voice Message Support**: Accepts and processes voice messages, converting them to text for further interaction.
 
 ---
 
