@@ -22,8 +22,6 @@ Healthcare-Telegram-Bot is a Telegram bot designed to assist users with health-r
 - **Spring Boot**: Used for API key and Telegram token management, as well as connecting to Redis.
 - **Redis**: Stores conversation context to maintain continuity in dialogue.
 - **Docker**: Facilitates containerization for easy deployment.
-- **Lombok**: Used to reduce boilerplate code (e.g., getters, setters).
-- **Telegram Bots API**: Used for interaction with Telegram.
 
 ---
 
@@ -31,7 +29,7 @@ Healthcare-Telegram-Bot is a Telegram bot designed to assist users with health-r
 
 ### **Prerequisites**
 
-- Java 11 or higher
+- Java 21
 - Docker
 - Redis
 
@@ -67,5 +65,4 @@ In the `ChatGptService` class, the `SYSTEM_MESSAGE` variable sets the bot's cont
 
 ```java
 private static final String SYSTEM_MESSAGE = "...";
-
 
